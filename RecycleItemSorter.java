@@ -90,9 +90,10 @@ public class RecycleItemSorter {
 
         System.out.println("\nSorting Recyclable Items:\n");
         for (RecyclableItem item : items) {
-            System.out.println(item.getItemName() + " → " + item.getRecycleBin());
+            System.out.println(item.getItemName() + " -> " + item.getRecycleBin());
         }
 
         sc.close();
     }
 }
+
