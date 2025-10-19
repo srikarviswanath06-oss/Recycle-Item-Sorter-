@@ -1,6 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+
 abstract class RecyclableItem {
     protected String itemName;
 
@@ -11,87 +10,91 @@ abstract class RecyclableItem {
     public String getItemName() {
         return itemName;
     }
+
     public abstract String getRecycleBin();
 }
+
+
 class Plastic extends RecyclableItem {
-    public Plastic(String itemName) {
-        super(itemName);
-    }
-
+    public Plastic(String itemName) { super(itemName); }
     @Override
-    public String getRecycleBin() {
-        return "Plastic Bin";
-    }
+    public String getRecycleBin() { return "Plastic Bin"; }
 }
+
 class Glass extends RecyclableItem {
-    public Glass(String itemName) {
-        super(itemName);
-    }
-
+    public Glass(String itemName) { super(itemName); }
     @Override
-    public String getRecycleBin() {
-        return "Glass Bin";
-    }
+    public String getRecycleBin() { return "Glass Bin"; }
 }
+
 class Metal extends RecyclableItem {
-    public Metal(String itemName) {
-        super(itemName);
-    }
-
+    public Metal(String itemName) { super(itemName); }
     @Override
-    public String getRecycleBin() {
-        return "Metal Bin";
-    }
+    public String getRecycleBin() { return "Metal Bin"; }
 }
+
 class Paper extends RecyclableItem {
-    public Paper(String itemName) {
-        super(itemName);
-    }
-
+    public Paper(String itemName) { super(itemName); }
     @Override
-    public String getRecycleBin() {
-        return "Paper Bin";
-    }
+    public String getRecycleBin() { return "Paper Bin"; }
 }
+
 
 public class RecycleItemSorter {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<RecyclableItem> items = new ArrayList<>();
 
-        System.out.println("Enter number of items to sort: ");
+        // Lists to store sorted items
+        List<String> plasticItems = new ArrayList<>();
+        List<String> glassItems = new ArrayList<>();
+        List<String> metalItems = new ArrayList<>();
+        List<String> paperItems = new ArrayList<>();
+
+        System.out.print("Enter the number of items: ");
         int n = sc.nextInt();
-        sc.nextLine(); // consume newline
+        sc.nextLine(); 
 
         for (int i = 0; i < n; i++) {
-            System.out.println("\nEnter item name:");
-            String name = sc.nextLine();
+            System.out.print("\nEnter the item: ");
+            String itemName = sc.nextLine();
 
-            System.out.println("Enter item type (plastic/glass/metal/paper):");
+            System.out.print("Enter the type of item (plastic/glass/metal/paper): ");
             String type = sc.nextLine().toLowerCase();
 
             switch (type) {
                 case "plastic":
-                    items.add(new Plastic(name));
+                    plasticItems.add(itemName);
                     break;
                 case "glass":
-                    items.add(new Glass(name));
+                    glassItems.add(itemName);
                     break;
                 case "metal":
-                    items.add(new Metal(name));
+                    metalItems.add(itemName);
                     break;
                 case "paper":
-                    items.add(new Paper(name));
+                    paperItems.add(itemName);
                     break;
                 default:
-                    System.out.println("Unknown item type. Skipping...");
+                    System.out.println("Unknown type, skipping...");
             }
         }
 
-        System.out.println("\nSorting Recyclable Items:\n");
-        for (RecyclableItem item : items) {
-            System.out.println(item.getItemName() + " -> " + item.getRecycleBin());
-        }
+        
+        System.out.println("\nThe Items in Plastic Bin are:");
+        for (String item : plasticItems)
+            System.out.println(item);
+
+        System.out.println("\nThe Items in Glass Bin are:");
+        for (String item : glassItems)
+            System.out.println(item);
+
+        System.out.println("\nThe Items in Metal Bin are:");
+        for (String item : metalItems)
+            System.out.println(item);
+
+        System.out.println("\nThe Items in Paper Bin are:");
+        for (String item : paperItems)
+            System.out.println(item);
 
         sc.close();
     }
